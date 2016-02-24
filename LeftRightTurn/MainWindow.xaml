@@ -1,0 +1,42 @@
+﻿<Window x:Class="LeftRightTurn.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LeftRightTurn"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <local:NavigationPanel Orientation="Horizontal"   
+                    x:Name="NavigationPanel"  
+                    Height="300"   
+                    HorizontalAlignment="Left"  
+                    VerticalAlignment="Top">
+
+            <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorLevel=1,AncestorType={x:Type Window}}, Path=ActualWidth }"  
+                  Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType={x:Type local:NavigationPanel}}, Path=ActualHeight}"  
+                  Background="Blue" >
+                <TextBlock FontSize="36">Page1</TextBlock>
+            </Grid>
+            <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorLevel=1,AncestorType={x:Type Window}}, Path=ActualWidth }"  
+                  Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType={x:Type local:NavigationPanel}}, Path=ActualHeight}"  
+                  Background="Violet">
+                <TextBlock FontSize="36">Page2</TextBlock>
+            </Grid>
+            <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorLevel=1,AncestorType={x:Type Window}}, Path=ActualWidth }"  
+                  Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType={x:Type local:NavigationPanel}}, Path=ActualHeight}"  
+                  Background="Purple" >
+                <TextBlock FontSize="36">Page3</TextBlock>
+            </Grid>
+        </local:NavigationPanel>
+
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" >
+            <Button Content="Previous" x:Name="ButtonPreviousPage"  
+                    IsEnabled="{Binding ElementName=NavigationPanel, Path=PreviousIsValid, Mode=OneWay}"  
+                    Click="ButtonPreviousPage_Click"></Button>
+            <Button Content="Next" x:Name="ButtonNextPage" Click="ButtonNextPage_Click"  
+                    IsEnabled="{Binding ElementName=NavigationPanel, Path=NextIsValid, Mode=OneWay}"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
